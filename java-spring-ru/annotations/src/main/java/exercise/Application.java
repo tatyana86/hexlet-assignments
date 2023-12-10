@@ -8,7 +8,7 @@ public class Application {
     public static void main(String[] args) {
         var address = new Address("London", 12345678);
 
-// Итерируем все методы класса
+        // BEGIN
         for (Method method : Address.class.getDeclaredMethods()) {
 
             // Проверяем, есть ли у метода аннотация @LogExecutionTime
@@ -17,6 +17,6 @@ public class Application {
                 System.out.println("Method " + method.getName() + " returns a value of type " + method.getReturnType());
             }
         }
-
+        // END
     }
 }
