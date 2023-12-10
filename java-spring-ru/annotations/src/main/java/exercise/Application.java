@@ -9,7 +9,7 @@ public class Application {
         var address = new Address("London", 12345678);
 
         // BEGIN
-        for (Method method : Address.class.getDeclaredMethods()) {
+        for (Method method : address.getClass().getDeclaredMethods()) {
 
             // Проверяем, есть ли у метода аннотация @LogExecutionTime
             if (method.isAnnotationPresent(Inspect.class)) {
