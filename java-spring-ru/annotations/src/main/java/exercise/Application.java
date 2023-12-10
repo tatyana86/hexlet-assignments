@@ -11,16 +11,10 @@ public class Application {
         // BEGIN
         for (Method method : Address.class.getDeclaredMethods()) {
 
-            try {
-                // Выполняем метод с аннотацией LogExecutionTime
-                method.invoke(address);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             // Проверяем, есть ли у метода аннотация @LogExecutionTime
             if (method.isAnnotationPresent(Inspect.class)) {
 
-                System.out.println("Method " + method.getName() + " returns a value of type " + method.getReturnType());
+                System.out.println("Method " + method.getName() + " returns a value of type " + method.getReturnType.getSimpleName()());
             }
         }
         // END
