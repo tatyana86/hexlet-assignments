@@ -22,10 +22,10 @@ public class Application {
     // Хранилище добавленных постов
     private List<Post> posts = Data.getPosts();
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
     // BEGIN
 
     @GetMapping("/posts") // Список всех постов
@@ -34,9 +34,9 @@ public class Application {
     }
 
     @GetMapping("/posts/{id}") // Просмотр конкретного поста
-    public Optional<Page> show(@PathVariable String id) {
+    public Optional<Post> show(@PathVariable String id) {
         var post = posts.stream()
-                .filter(p -> p.getSlug().equals(id))
+                .filter(p -> p.getId().equals(id))
                 .findFirst();
         return post;
     }
@@ -50,12 +50,12 @@ public class Application {
     @PutMapping("/posts/{id}") // Обновление поста
     public Post update(@PathVariable String id, @RequestBody Post data) {
         var maybePost = posts.stream()
-                .filter(p -> p.getSlug().equals(id))
+                .filter(p -> p.getId().equals(id))
                 .findFirst();
         if (maybePost.isPresent()) {
             var post = maybePost.get();
-            post.setSlug(data.getSlug());
-            post.setName(data.getName());
+            post.setId(data.getId());
+            post.setTitle(data.getTitle());
             post.setBody(data.getBody());
         }
         return data;
@@ -63,7 +63,7 @@ public class Application {
 
     @DeleteMapping("/posts/{id}") // Удаление поста
     public void destroy(@PathVariable String id) {
-        posts.removeIf(p -> p.getSlug().equals(id));
+        posts.removeIf(p -> p.getId().equals(id));
     }
     // END
 }
