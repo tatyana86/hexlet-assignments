@@ -19,13 +19,13 @@ import exercise.Data;
 public class PostsController {
     private List<Post> posts = Data.getPosts();
 
-    @GetMapping("/users/{id}/posts")
+    @GetMapping("/users/{userId}/posts")
     public List<Post> show(@PathVariable Integer userId) {
         return posts.stream()
                 .filter(p -> p.getUserId() == userId).toList();
     }
 
-    @PostMapping("/users/{id}/posts")
+    @PostMapping("/users/{userId}/posts")
     @ResponseStatus(HttpStatus.CREATED)
     public create(@PathVariable Integer userId, @RequestBody Post post) {
         post.setUserId(userId);
