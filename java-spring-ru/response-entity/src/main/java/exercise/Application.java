@@ -66,6 +66,7 @@ public class Application {
             var post = maybePost.get();
             post.setId(data.getId());
             post.setTitle(data.getTitle());
+            post.setBody(data.getBody());
             return ResponseEntity.ok().body(data);
         }
         return ResponseEntity.noContent().build();
