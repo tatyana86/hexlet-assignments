@@ -29,9 +29,6 @@ public class PeopleController {
     }
 
     // BEGIN
-//    GET /people - Список всех персон
-//    POST /people – Создание новой персоны
-//    DELETE /people/{id} – Удаление персоны
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -46,7 +43,7 @@ public class PeopleController {
         return res;
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void destroy(@PathVariable Long id) {
         var user = personRepository.findById(id).get();
         personRepository.delete(user);
