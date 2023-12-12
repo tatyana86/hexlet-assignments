@@ -42,8 +42,8 @@ public class PeopleController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Person create(@Valid @RequestBody Person person) {
-        personRepository.save(person);
-        return person;
+        var res = personRepository.save(person);
+        return res;
     }
 
     @DeleteMapping("{id}")
