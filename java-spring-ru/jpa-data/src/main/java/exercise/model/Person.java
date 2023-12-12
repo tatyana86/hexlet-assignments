@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.EqualsAndHashCode;
 
 // BEGIN
 @Entity

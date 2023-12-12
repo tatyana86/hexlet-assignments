@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
-
+import java.util.Optional;
 import exercise.model.Person;
 
 @RestController
@@ -43,7 +43,7 @@ public class PeopleController {
         return res;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public void destroy(@PathVariable Long id) {
         var user = personRepository.findById(id).get();
         personRepository.delete(user);
