@@ -41,7 +41,7 @@ public class PeopleController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Person create(@Valid @RequestBody Person person) {
+    public Person create(@Validated @RequestBody Person person) {
         var res = personRepository.save(person);
         return res;
     }
