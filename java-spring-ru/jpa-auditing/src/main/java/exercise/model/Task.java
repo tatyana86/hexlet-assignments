@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 @EntityListeners(AuditingEntityListener.class)
 @Setter
 @Getter
-class Task {
+public class Task {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;

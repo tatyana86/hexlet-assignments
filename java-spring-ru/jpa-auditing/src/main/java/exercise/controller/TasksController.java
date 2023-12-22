@@ -1,5 +1,6 @@
 package exercise.controller;
 
+import org.hibernate.query.TupleTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.hibernate.query.TupleTransformer;
 
 import java.util.List;
 
@@ -42,21 +42,24 @@ public class TasksController {
 
     // BEGIN
     @PostMapping(path = "")
+    @ResponseStatus(HttpStatus.CREATED)
     public Task create(@RequestBody Task task) {
-        return taskRepository.save(task)
+        return taskRepository.save(task);
     }
 
     @PutMapping(path = "/{id}")
-    public Task update(@PathVariable long id, @RequestBody Task updatedTask) {
+    public Task update(@PathVariable long id, @RequestBody Task taskData) {
+
         var task =  taskRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Task with id " + id + " not found"));
 
-        task.setTitle(updatedTask.getTitle());
-        task.setDescription(updatedTask.getDescription());
+        task.setTitle(taskData.getTitle());
+        task.setDescription(taskData.getDescription());
 
         taskRepository.save(task);
 
         return task;
+
     }
     // END
 
