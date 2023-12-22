@@ -1,9 +1,10 @@
 package exercise.controller;
 
+import exercise.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
-import exercise.model.Post;
+
 import java.util.List;
 
 import exercise.model.Comment;
@@ -17,37 +18,39 @@ public class CommentsController {
     @Autowired
     private CommentRepository commentRepository;
 
-    @GetMapping("")
-    public List<Comment> index() {
+    //get
+    @GetMapping
+    public List<Comment> index () {
         return commentRepository.findAll();
     }
-
+    //GET {id}
     @GetMapping("/{id}")
     public Comment show(@PathVariable long id) {
         var comment = commentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Comment with id " + id + " not found"));
         return comment;
     }
-
+    //POST
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Comment create(@RequestBody Comment comment) {
         commentRepository.save(comment);
         return comment;
     }
-
+    //PUT {id}
     @PutMapping("/{id}")
-    public Comment update(@PathVariable long id, @RequestBody Comment updatedComment) {
+    public Comment update(@PathVariable long id, @RequestBody Comment commentData) {
         var comment = commentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Comment with id " + id + " not found"));
+        comment.setBody(commentData.getBody());
         comment.setPostId(commentData.getPostId());
-        comment.setBody(updatedComment.getBody());
-        commentRepository.save(comment);
-        retun comment;
-    }
 
+        commentRepository.save(comment);
+        return comment;
+    }
+    //DELETE {id}
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) {
+    public void destroy(@PathVariable long id) {
         commentRepository.deleteById(id);
     }
 }
