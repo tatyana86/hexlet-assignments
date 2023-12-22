@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.HttpStatus;
 import java.util.List;
 import java.util.Optional;
+
 import exercise.model.Post;
 import exercise.repository.PostRepository;
 import exercise.exception.ResourceNotFoundException;
@@ -29,42 +30,40 @@ public class PostsController {
     @Autowired
     private CommentRepository commentRepository;
 
+    //GET
     @GetMapping("")
     public List<Post> index() {
         return postRepository.findAll();
     }
-
+    //GET {id}
     @GetMapping("/{id}")
     public Post show(@PathVariable long id) {
         var post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
         return post;
     }
-
+    //POST
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Post create(@RequestBody Post post) {
+    public Post create (@RequestBody Post post) {
         postRepository.save(post);
         return post;
     }
-
+    //PUT {id}
     @PutMapping("/{id}")
-    public Post update(@PathVariable long id, @RequestBody Post updatedPost) {
+    public Post update(@PathVariable long id, @RequestBody Post postData) {
         var post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
-
-        post.setTitle(updatedPost.getTitle());
-        post.setBody(updatedPost.getBody());
+        post.setTitle(postData.getTitle());
+        post.setBody(postData.getBody());
         postRepository.save(post);
-        retun post;
+        return post;
     }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) {
+    //DELETE {id}
+    @DeleteMapping("{id}")
+    public void destroy(@PathVariable long id) {
         commentRepository.deleteByPostId(id);
         postRepository.deleteById(id);
     }
 
-
 }
-// END
