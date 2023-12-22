@@ -30,6 +30,7 @@ public class CommentsController {
     }
 
     @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public Comment create(@RequestBody Comment comment) {
         commentRepository.save(comment);
         return comment;
