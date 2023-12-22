@@ -1,9 +1,6 @@
 package exercise.model;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.EntityListeners;
+import jakarta.persistence.*;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 import lombok.Getter;
