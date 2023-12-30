@@ -15,7 +15,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 // BEGIN
-Setter
+@Setter
 @Getter
 public class GuestCreateDTO {
 
@@ -33,4 +33,5 @@ public class GuestCreateDTO {
 
     @Future
     private LocalDate cardValidUntil;
+}
 // END
