@@ -1,5 +1,6 @@
 package exercise.mapper;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.TargetType;

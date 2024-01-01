@@ -19,7 +19,7 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 public abstract class ProductMapper {
-    @Mapping(target = "id", source = "categoryId")
+    @Mapping(target = "category", source = "categoryId")
     public abstract Product map(ProductCreateDTO dto);
 
     @Mapping(source = "category.id", target = "categoryId")

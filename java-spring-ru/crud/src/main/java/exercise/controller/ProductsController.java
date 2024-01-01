@@ -45,8 +45,8 @@ public class ProductsController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    ProductDTO create(@Valid @RequestBody ProductCreateDTO postData) {
-        var product = productMapper.map(postData);
+    ProductDTO create(@Valid @RequestBody ProductCreateDTO productData) {
+        var product = productMapper.map(productData);
         productRepository.save(product);
         var productDTO = productMapper.map(product);
         return productDTO;
