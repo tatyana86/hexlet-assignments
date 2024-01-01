@@ -33,7 +33,7 @@ public class ProductsController {
 
     // BEGIN
     @GetMapping("")
-    @ResponseStatus(HttpStatus.OK)
+    //@ResponseStatus(HttpStatus.OK)
     List<ProductDTO> index() {
         var products = productRepository.findAll();
         var result = products.stream()
