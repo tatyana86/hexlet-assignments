@@ -21,7 +21,8 @@ public abstract class AuthorMapper {
     // BEGIN
     public abstract Author map(AuthorCreateDTO dto);
 
-    public abstract AuthorDTO map(Author model);
+    public abstract AuthorDTO map(Author data);
+
     // END
 
     public abstract void update(AuthorUpdateDTO dto, @MappingTarget Author model);
