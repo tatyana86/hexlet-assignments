@@ -62,5 +62,4 @@ public class SecurityConfig {
         return provider;
     }
 }
-
 // END
